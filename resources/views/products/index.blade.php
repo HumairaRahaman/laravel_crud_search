@@ -11,7 +11,7 @@
            aria-current="page">Create Product</a>
     </header>
     <main>
-        <table class="w-full table-auto">
+        <table class="w-[80%] mx-auto shadow shadow-lg mt-3 table-auto">
             <thead class=" border-b">
             <tr class="bg-gray-2 text-left dark:bg-meta-4">
                 <th class="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
@@ -83,6 +83,12 @@
                 </tr>
             @endforeach
             </tbody>
+
         </table>
+        <div class=" w-[80%] mx-auto border-gray-200 bg-white px-4 py-3 sm:px-6">
+            <a href="3">{{ $products->links() }}</a>
+        </div>
+
+
     </main>
 @endsection
