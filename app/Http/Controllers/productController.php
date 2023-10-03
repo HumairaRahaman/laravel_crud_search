@@ -12,7 +12,8 @@ class productController extends Controller
 {
     public function index()
     {
-        return view('products.index');
+        $products = Product::get();
+        return view('products.index',compact(['products',]));
     }
 
     public function create()
@@ -33,4 +34,6 @@ class productController extends Controller
             return back()->withError('enternal server Error!');
         }
     }
+
+
 }

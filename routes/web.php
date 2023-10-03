@@ -19,7 +19,7 @@ Route::prefix('products')->name('products.')->group(static function () {
     Route::post('', [productController::class, 'store'])->name('store');
     Route::get('create', [productController::class, 'create'])->name('create');
 
-    Route::prefix('{event_id}')->group(static function () {
+    Route::prefix('{product_id}')->group(static function () {
         Route::put('', [productController::class, 'update'])->name('update');
         Route::delete('', [productController::class, 'destroy'])->name('delete');
         Route::get('edit', [productController::class, 'edit'])->name('edit');
