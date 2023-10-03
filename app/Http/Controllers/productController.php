@@ -6,14 +6,19 @@ use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
 
 class productController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::latest()->paginate(5);
+
+        if ($request->has('search')) {
+            $products = Product::where($request->get('search', ''));
+        } else {
+            $products = Product::latest();
+        }
+        $products = $products->paginate(5);
         return view('products.index', compact(['products',]));
     }
 
@@ -57,8 +62,9 @@ class productController extends Controller
         }
     }
 
-    public function destroy($product_id){
-        $product = Product::where('id',$product_id)->firstOrFail();
+    public function destroy($product_id)
+    {
+        $product = Product::where('id', $product_id)->firstOrFail();
         $product->delete();
         return back()->withSuccess('PRODUCT Successfully Deleted!');
     }

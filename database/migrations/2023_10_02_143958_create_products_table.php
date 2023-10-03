@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->timestamps();
+            $table->fullText('description');
         });
     }
 
@@ -24,6 +25,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('products',function (Blueprint $table){
+            $table->dropFullText('description');
+        });
         Schema::dropIfExists('products');
     }
 };
