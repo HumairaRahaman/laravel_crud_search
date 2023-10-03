@@ -34,6 +34,11 @@ class productController extends Controller
             return back()->withError('enternal server Error!');
         }
     }
+  
+    public  function edit($product_id){
 
+        $product = Product::where('id',$product_id)->findOrFail($product_id);
+        return view('products.edit',compact(['product']));
+    }
 
 }
