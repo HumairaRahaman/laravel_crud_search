@@ -32,17 +32,18 @@
                                 @if (Route::has('login'))
                                     <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                                         @auth
-                                            <a href="{{ url('/home') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
+                                            <a href="{{ route('auth.logout') }}" class="block px-4 py-2 text-sm hover:px-3 hover:py-2 hover:rounded hover:bg-white  hover:text-gray-900 mb-2 text-white" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                                         @else
-                                            <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+                                            @if (Route::has('login'))
 
+                                            <a href="{{ route('login') }}" class="font-semibold text-white hover:px-3 hover:py-2 hover:rounded hover:bg-white  hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+                                            @endif
                                             @if (Route::has('register'))
-                                                <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                                                <a href="{{ route('register') }}" class="ml-4 font-semibold text-white hover:px-3 hover:py-2 hover:rounded hover:bg-white  hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
                                             @endif
                                         @endauth
                                     </div>
                                 @endif
-                                <a href="#" class="block px-4 py-2 text-sm text-white" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                             </div>
                         </div>
                     </div>
