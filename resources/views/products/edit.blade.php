@@ -118,8 +118,9 @@
                 </div>
             @endif
             <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-                <form action="{{ route('products.update', [$product->id]) }}" method="put">
+                <form action="{{ route('products.update', [$product->id]) }}" method="post">
                     @csrf
+                    @method('PUT')
                     <div class="space-y-12">
                         <div class=" border-gray-900/10 pb-12">
 

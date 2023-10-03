@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductStoreRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -13,7 +14,7 @@ class productController extends Controller
     public function index()
     {
         $products = Product::get();
-        return view('products.index',compact(['products',]));
+        return view('products.index', compact(['products',]));
     }
 
     public function create()
@@ -30,15 +31,30 @@ class productController extends Controller
             $product->save();
             return back()->withSuccess('PRODUCT Successfully Created!');
         } catch (\Exception $e) {
-            Log::error('error',[$e]);
-            return back()->withError('enternal server Error!');
+            Log::error('error', [$e]);
+            return back()->withError('internal server Error!');
         }
     }
-  
-    public  function edit($product_id){
 
-        $product = Product::where('id',$product_id)->findOrFail($product_id);
-        return view('products.edit',compact(['product']));
+    public function edit($product_id)
+    {
+
+        $product = Product::where('id', $product_id)->firstOrFail();
+        return view('products.edit', compact(['product']));
+    }
+
+    public function update(ProductUpdateRequest $request, $product_id)
+    {
+        try {
+            $product = Product::where('id', $product_id)->firstOrFail();
+            $product->name = $request->name;
+            $product->description = $request->description;
+            $product->save();
+            return back()->withSuccess('PRODUCT Successfully Updated!');
+        } catch (\Exception $e) {
+            Log::error('error', [$e]);
+            return back()->withError('Internal server Error!');
+        }
     }
 
 }
