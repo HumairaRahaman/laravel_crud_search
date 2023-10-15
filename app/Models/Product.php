@@ -19,7 +19,6 @@ class Product extends Model
     ];
     public function searchableAs(): string
     {
-        info('search');
         return 'products_index';
 
     }
@@ -28,8 +27,6 @@ class Product extends Model
 
     public function toSearchableArray(): array
     {
-        info('array');
-
         return [
             'id' => $this->getKey(),
             'name' => $this->name,

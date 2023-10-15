@@ -43,11 +43,7 @@ return [
     |
     */
 
-//    'queue' => env('SCOUT_QUEUE', false),
-    'queue' => [
-        'connection' => 'redis',
-        'queue' => 'scout'
-    ],
+    'queue' => env('SCOUT_QUEUE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -137,10 +133,10 @@ return [
 
     'meilisearch' => [
         'host' => env('MEILISEARCH_HOST', 'http://localhost:7700'),
-        'key' => env('MEILISEARCH_KEY',null),
+        'key' => env('MEILISEARCH_KEY', null),
         'index-settings' => [
             Product::class => [
-                'filterableAttributes'=> ['id', 'name', 'description'],
+                'filterableAttributes' => ['id', 'name', 'description'],
                 'sortableAttributes' => ['created_at'],
             ],
         ],
