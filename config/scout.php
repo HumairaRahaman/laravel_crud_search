@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Product;
+
 return [
 
     /*
@@ -41,11 +43,7 @@ return [
     |
     */
 
-//    'queue' => env('SCOUT_QUEUE', false),
-    'queue' => [
-        'connection' => 'database',
-        'queue' => 'scout'
-    ],
+    'queue' => env('SCOUT_QUEUE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -135,11 +133,12 @@ return [
 
     'meilisearch' => [
         'host' => env('MEILISEARCH_HOST', 'http://localhost:7700'),
-        'key' => env('MEILISEARCH_KEY'),
+        'key' => env('MEILISEARCH_KEY', null),
         'index-settings' => [
-            // 'users' => [
-            //     'filterableAttributes'=> ['id', 'name', 'email'],
-            // ],
+            Product::class => [
+                'filterableAttributes' => ['id', 'name', 'description'],
+                'sortableAttributes' => ['created_at'],
+            ],
         ],
     ],
 
